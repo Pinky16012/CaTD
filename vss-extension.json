@@ -1,0 +1,78 @@
+{
+    "manifestVersion": 1,
+    "id": "Calculate-Target-Date-extension",
+    "publisher": "",
+    "version": "1.0.0",
+    "name": "Calculate Target Date (CaTD)",
+    "description": "Auto calculate Target Date when Start Date and EST Working Day (custom field) are filled.",
+    "public": false,
+    "categories": ["Azure Boards"],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "catd-work-item-form-observer",
+            "type": "ms.vss-web.work-item-notifications",
+            "description": "Update the 'Target Date' field when other fields on the form change.",
+            "targets": [
+                "ms.vss-code-web.work-item-form"
+            ],
+            "properties": {
+                "uri": "catd.html"
+            }
+        },
+        {
+            "id": "catd-settings-hub",
+            "type": "ms.vss-web.hub",
+            "description": "Collection level settings experience for managing fields used to calculate Target Date.",
+            "targets": [
+                "ms.vss-web.collection-admin-hub-group"
+            ],
+            "properties": {
+                "name": "CaTD",
+                "uri": "catdSettings.html"
+            }
+        },
+        {
+            "id": "catd-contextMenu",
+            "type": "ms.vss-web.action",
+            "description": "Work item context menu action to update the Target Date field value for the selected work items.",
+            "targets": [
+                "ms.vss-work-web.work-item-context-menu"
+            ],
+            "properties": {
+                "text": "Recalculate Target Date values",
+                "title": "Update the Target Date value for the selected work items",
+                "icon": "images/icon-refresh.png",
+                "groupId": "SAFe",
+                "uri": "wsjf.html"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "images",
+            "addressable": true
+        },
+        {
+            "path": "catd.html",
+            "addressable": true
+        },
+        {
+            "path": "wsjfSettings.html",
+            "addressable": true
+        },
+        {
+            "path": "node_modules/vss-web-extension-sdk/lib",
+            "addressable": true,
+            "packagePath": "lib"
+        }
+    ],
+    "scopes": [
+        "vso.work",
+        "vso.work_write"
+    ]
+}
